@@ -1,6 +1,6 @@
 示例：
 
-<img src="https://nme-200t.oss-cn-hangzhou.aliyuncs.com/template/202209152151742.png" alt="QQ图片20220915215118" style="zoom: 25%;" />
+![QQ图片20220915215118 (手机)](https://nme-200t.oss-cn-hangzhou.aliyuncs.com/template/202209152152627.png)
 
 展示网址：
 
