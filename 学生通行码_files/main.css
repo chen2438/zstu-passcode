@@ -128,7 +128,7 @@
 .ym-span {
     color: blue;
     font-size: 40px;
-    background: url('/yqfk/img/ym.png') no-repeat;
+    background: url('./ym.png') no-repeat;
     background-size: 52px;
     background-position: right;
     padding-right: 55px;
