@@ -1,4 +1,4 @@
-测试地址 cdn.chenhaotian.top/txm/index.html?id=2021329600001 
+测试地址 http://cdn.chenhaotian.top/txm/index.html?id=2021329600001 
 
 旧的地址仍然可用, 但不再维护
 
