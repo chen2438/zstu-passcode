@@ -1,0 +1,16 @@
+.top-dw-sj {
+    text-decoration: underline;
+}
+
+#sj {
+    background: url('../img/refresh.png') no-repeat;
+    background-size: 55px;
+    background-position: right;
+    padding: 0 70px 0 70px;
+}
+
+.mid-jkm-code {
+    color: green;
+    font-size: 40px;
+    text-decoration: underline;
+}

@@ -1,323 +1,39 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)http://txm.zstu.edu.cn:5008/StuPassCode/Index -->
-<html xmlns="http://www.w3.org/1999/xhtml" style="background-color: rgb(184, 232, 249);"><head runat="server"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>学生通行码</title>
-    <link href="./学生通行码_files/layer.css" type="text/css" rel="stylesheet">
-    <link href="./学生通行码_files/main.css" type="text/css" rel="stylesheet">
-    <script src="./学生通行码_files/layer.js.下载" type="text/javascript"></script>
-    <script src="./学生通行码_files/jquery.min.js.下载" type="text/javascript"></script>
-    <script type="text/javascript">
-        let _data = {"Hs":[{"Prm1":"2022-09-10 19:32:36","Prm2":"阴性","Prm3":null,"Prm4":null}],"Ym":[{"Prm1":"2022-02-12","Prm2":"第3针","Prm3":null,"Prm4":null},{"Prm1":"2021-07-27","Prm2":"第2针","Prm3":null,"Prm4":null},{"Prm1":"2021-07-03","Prm2":"第1针","Prm3":null,"Prm4":null}],"Jkm":[{"Prm1":"2020-02-23 14:58:38","Prm2":"杭州市","Prm3":"绿码","Prm4":null},{"Prm1":"2021-02-10 16:04:58","Prm2":"金华市","Prm3":"绿码","Prm4":null},{"Prm1":"2021-07-28 14:43:00","Prm2":"衢州市","Prm3":"绿码","Prm4":null}],"Txm":[{"Prm1":"2022-09-02","Prm2":"2023-01-06","Prm3":"启用","Prm4":null}],"Xcm":[]};
-        $(() =>{
-            $("html").css("background-color", "#b8e8f9");
-            getTime();
-            getQueryString("name");
-            setInterval(() => {
-               getTime();
-            }, 1000);
-            // 定时刷新页面
-            //setTimeout(()=>{
-            //    location.reload();
-            //},1000 * 60)
-
-        });
-        //分割为数组
-        function getQueryString(name){
-            var query = window.location.search.substring(1);
-            var vars = query.split("&"), found = 0;
-            for (var i=0;i<vars.length;i++) {
-                var pair = vars[i].split("=");
-                if(pair[0] === name){
-                    found = 1;
-                    $("#_name").text(decodeURI(pair[1]));
-                    // return decodeURI(pair[1]);
-                }
-            }
-            if(!found) $("#_name").text("诸葛呼吸");
-            //return(false);
-        }
-
-        function getTime(){
-            var date = new Date();
-            var year = date.getFullYear();
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
-            var hour = date.getHours();
-            var minute = date.getMinutes();
-            var second = date.getSeconds();
-
-            if(hour.toString().length<2)
-                hour = "0"+hour;
-            if(minute.toString().length<2)
-                minute = "0"+minute;
-            if(second.toString().length<2)
-                second = "0"+second;
-
-            $("#sj").text(month + "月" + day + "日  " + hour + ":" + minute + ":" + second);
-            if(month.toString().length<2)
-                month = "0"+month;
-            $("#_hs").text(month + "-" + day + "  " + "00" + ":" + "13");
-        }
-        function GetInfo(tag){
-           let info = eval("_data." + tag);
-           var html = "<div class='tips-info'>";
-           if(tag == 'Hs'){
-               html += "<div class='tips-title'><div>核酸检测时间</div><div>结果</div></div>";
-            }
-            if(tag == 'Ym'){
-                html += "<div class='tips-title'><div>疫苗接种时间</div><div>针数</div></div>";
-            }
-            if(tag == 'Jkm'){
-                html += "<div class='tips-title'><div>最近更新时间</div><div>码发放地</div><div>码状态</div></div>";
-            }
-            if (tag=='Txm') {
-                html += "<div class='tips-title'><div>开始时间</div><div>结束时间</div><div>状态</div></div>";
-            }
-            for(let i = 0;i < info.length; i++){
-                html += `<div class='tips-content'>`
-                + `<div>` + info[i].Prm1 + `</div>`
-                + `<div>` + info[i].Prm2 + `</div>`
-                + (info[i].Prm3 == null ? `` : "<div>" + info[i].Prm3 + "</div>" )
-                + `</div>`;
-            }
-            if (tag == 'Jkm') {
-                html += '<span style="color:blue;font-size:40px;text-decoration:underline;" onclick="handle_refresh()">点击刷新健康码信息<span>';
-            }
-            html += "</div>"
-            alertOpen(html);
-        }
-        let lOpen;
-        //弹出内容
-        function alertOpen(html){
-            lOpen = layer.open({
-                shadeClose: true
-                ,content: html
-                ,anim: 'up'
-                ,style: 'position:fixed; left:3%; top:500px; width:94%; height:700px; border: none; -webkit-animation-duration: .5s; animation-duration: .5s; border-radius: 25px;'
-            })
-        }
-        function alertTips(content){
-            //提示
-            layer.open({
-                content: "<span style='font-size: 35px;'>" + content + "</span>"
-                ,skin: 'msg'
-                ,time: 2 //2秒后自动关闭
-            });
-        }
-        //32位随机字符串
-        function getGuid(){
-            var oStr = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',oChar = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',len = oChar.length;
-            return oStr.replace(/x/g, (match) => {
-                return oChar.charAt(Math.floor(Math.random() * len));
-            });
-        }
-        //获取验证码
-        function getCode(){
-            let sjh = $('.layui-m-layercont').find("input[name='sjh']").eq(0).val();
-            if(!isPhoneNum(sjh)){
-                alertTips("请输入正确的手机号码！！");
-                return;
-            }
-            let queryId = getGuid();
-            $("#queryId").val(queryId);
-            let sendTime = "2022-09-14 18:55:15";
-            $("#sendTime").val(sendTime);
-            let timeNum = 60, setText = (start) => {
-                let btn = $('.layui-m-layercont').find("span[name='btn_yzm']").eq(0);
-                btn.html(start ? timeNum : --timeNum);
-                btn.addClass("disabled2");
-
-                if (timeNum <= 0) {
-                    clearInterval(this.timer);
-                    btn.removeClass("disabled2");
-                    btn.html("重新获取");
-                };
-            };
-            setText(!0);
-            this.timer = setInterval(setText, 1000);
-
-            let loadingOpen;
-            $.ajax({
-                url: "/AdultPass/GetVerification",
-                type: "POST",
-                data: {
-                    sjh: sjh,
-                    queryId: queryId,
-                    sendTime: sendTime
-                },
-                beforeSend: () => {
-                    loadingOpen = layer.open({type: 2});
-                },
-                success: (ret, status) => {
-                    layer.close(loadingOpen);
-                    if (status == "success" && ret && ret.code == '00') {
-                        try{
-                            let datas = JSON.parse(ret.datas);
-                            if(datas && datas.code == 200){
-                                if(datas.data && datas.data.code == '00' && datas.data.result){
-                                    alertTips(datas.data.result);
-                                }else{
-                                    alertTips(datas.data.errorDesc);
-                                }
-                            }
-                            else{
-                                alertTips("短信发送失败！");
-                            }
-                        }catch(e){
-                            alertTips("短信发送失败！");
-                        }
-                    }
-                    else {
-                        alertTips("短信发送失败！");
-                    }
-                },
-                error: function (obj) {
-                    layer.close(loadingOpen);
-                    alertTips("短信发送失败！");
-                },
-                dataType: "json",
-                async: true
-            });
-        }
-        function getXcm(){
-            let sjh = $('.layui-m-layercont').find("input[name='sjh']").eq(0).val();
-            let yzm = $('.layui-m-layercont').find("input[name='yzm']").eq(0).val();
-            let queryId =  $("#queryId").val() == '' ? getGuid() : $("#queryId").val();
-            let sendTime = $("#sendTime").val() == '' ? "2022-09-14 18:55:15" : $("#sendTime").val();
-
-            if(!isPhoneNum(sjh)){
-                alertTips("请输入正确的手机号码！！");
-                return;
-            }
-            if(!(yzm && yzm.length == 6)){
-                alertTips("请输入正确的短信验证码！！");
-                return;
-            }
-            let loadingOpen;
-            $.ajax({
-                url: "/AdultPass/GetXcm",
-                type: "POST",
-                data: {
-                    sjh: sjh,
-                    queryId: queryId,
-                    sendTime: sendTime,
-                    verification: yzm
-                },
-                beforeSend: () => {
-                    loadingOpen = layer.open({type: 2});
-                },
-                success: (ret, status) => {
-                    layer.close(loadingOpen);
-                    if (status == "success" && ret && ret.code == '00') {
-                        try{
-                            let datas = JSON.parse(ret.datas);
-                            if(datas && datas.code == 200){
-                                if(datas.data && datas.data.code == '00' && datas.data.result){
-                                    alertTips("查询成功！");
-                                    let _hy = $("#xcm-hy");
-                                    let _h = `<div class="xcm-jg">` + (datas.data.result.value == "1" ? "更新时间：2022-09-14" : (datas.data.result.value == "2" ? "途经中高风险地区" : "没有行程记录")) + `</div>`;
-                                    _hy.html(_h);
-                                    $(".xcm-top-img>img").attr("src", (datas.data.result.value == "1" ? "/yqfk/img/go.png" : (datas.data.result.value == "2" ? "/yqfk/img/notgo.png" : "/yqfk/img/isgo.png")))
-                                    layer.close(lOpen);
-                                    $.post("/AdultPass/InsertXcm", {
-                                        sjh: sjh,
-                                        sendTime: sendTime,
-                                        jg: datas.data.result.value
-                                    });
-                                }else{
-                                    alertTips(datas.data.errorDesc);
-                                }
-                            }else{
-                                alertTips("查询数据失败！！");
-                            }
-                        }catch(e){
-                            alertTips("查询数据失败！");
-                        }
-                    } else {
-                        alertTips("查询数据失败！");
-                    }
-                },
-                error: function (obj) {
-                    layer.close(loadingOpen);
-                    alertTips("查询数据失败！");
-                },
-                dataType: "json",
-                async: true
-            });
-        }
-        //授权
-        function isCheck(e){
-            if(e.checked){
-                $('.layui-m-layercont').find(".hy-cx").eq(0).removeClass("disabled1");
-            }else{
-                $('.layui-m-layercont').find(".hy-cx").eq(0).addClass("disabled1");
-            }
-        }
-        //手机号码 正则
-        function isPhoneNum(phone){
-            var reg = /^1(3\d|4[5-9]|5[0-35-9]|6[2567]|7[0-8]|8\d|9[0-35-9])\d{8}$/;
-            return reg.test(phone);
-        }
-        //刷新健康码
-        function refreshJkm() {
-            $.ajax({
-                url: "/TchPassCode/RefreshJkm",
-                type: "POST",
-                success: function (msgBody) {
-                    var data = $.parseJSON(msgBody);
-                    if (data.Code == 1) {
-                        alertTips(data.Message);
-                        setTimeout(() => { location.reload() }, 500);
-                    }
-                    else {
-                        alertTips(data.Message);
-                    }
-                }
-            })
-        }
-        const handle_refresh = debounce(() => {
-            refreshJkm();
-        }, 1000);
-        /*
-         * fn [function] 需要防抖的函数
-         * delay [number] 毫秒，防抖期限值
-         */
-        function debounce(fn, delay) {
-            let timer = null; //借助闭包
-            return function () {
-                if (timer) {
-                    clearTimeout(timer); //进入该分支语句，说明当前正在一个计时过程中，并且又触发了相同事件。所以要取消当前的计时，重新开始计时
-                    timer = setTimeout(fn, delay);
-                } else {
-                    timer = setTimeout(fn, delay); // 进入该分支说明当前并没有在计时，那么就开始一个计时
-                }
-            };
-        }
-    </script>
-    <!-- <link rel="stylesheet" href="css/longcss.css" type="text/css"> -->
-
+    <link href="css/layer.css" type="text/css" rel="stylesheet" />
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
+    <link href="css/custom.css" type="text/css" rel="stylesheet" />
+    <script src="js/layer.js" type="text/javascript"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+    <script src="js/user.js" type="text/javascript"></script>
 </head>
+
 <body>
     <div style="width: 100%;">
         <!-- 个人信息 -->
         <div class="top-body">
-            <div class="top-info" style="background: url('./学生通行码_files/card.png') no-repeat; background-size: 100%; background-position: center;">
+            <div class="top-info">
                 <div class="top-banner">
-                    <img src="./学生通行码_files/schoolname.png"><br>
+                    <img src='img/schoolname.png'><br />
                 </div>
                 <div class="top-xm">
-                    <span id="_name" style="font-size:45px;font-weight: 600;"></span>
-                     &nbsp;&nbsp;<span>学生</span>
+                    <span class="top-xm-1">魏明铭</span>&nbsp;&nbsp;
+                    <span id="top-xm-2">学生</span>
                 </div>
                 <div class="top-xgh">
-                    学工号：2020329601328
+                    学工号：2020329623638
                 </div>
-                <div class="top-dw">
-                    学院/班级：计算机科学与技术学院（人工智能学院）
+                <div class="top-dw" id="dept">
+                    学院/班级：信息科学与工程学院
                 </div>
                 <div class="top-dw" onclick="GetInfo('Txm')">
-                    通行时间：<span style="text-decoration: underline">2022-09-02至2023-01-06</span>
+                    通行时间：<span class="top-dw-sj">2022-09-02至2023-01-06</span>
                 </div>
             </div>
         </div>
@@ -325,25 +41,21 @@
         <div class="mid-info">
             <div class="mid-time" onclick="window.location.reload();">
                 <span id="rq"></span>
-                <span id="sj" style="background: url('./学生通行码_files/refresh.png') no-repeat; background-size: 55px; background-position: right;padding:0 70px 0 70px; "></span>
+                <span id="sj"></span>
             </div>
             <!-- 二维码 -->
             <div class="mid-ewm">
-                <img src="./学生通行码_files/下载.png">
+                <img id="ewm" src='img/qr-code.png'>
             </div>
-
             <div class="mid-yqsj">
                 <div class="mid-jkm">
-                    <span>杭州健康码为<span style="color: green; font-size: 40px; text-decoration:underline;" onclick="GetInfo('Jkm')">绿码</span></span>
+                    <span>杭州健康码为<span class="mid-jkm-code" onclick="GetInfo('Jkm')">绿码</span></span>
                 </div>
                 <div class="mid-ym">
-                    <span>已完成<span class="ym-span" onclick="GetInfo('Ym')">
-                        第3针
-                        <!-- <span style="background: url('./img/ym.png') no-repeat;"></span> -->
-                    </span>疫苗接种</span>
+                    <span>已完成<span class="ym-span" onclick="GetInfo('Ym')">第3针</span>疫苗接种</span>
                 </div>
             </div>
-            <div class="mid-msg" style="background-color: rgb(153 239 125 / 20%)">
+            <div class="mid-msg">
                 <span>恭喜您，一切正常~</span>
             </div>
         </div>
@@ -351,18 +63,18 @@
         <div class="bottom-info">
             <div class="bottom-left">
                 <!-- 核酸 -->
-                <div class="bottom-hs" style="background: url('./学生通行码_files/hs-green.png') no-repeat; background-size: 300px;">
+                <div class="bottom-hs">
                     <div class="hs-sj">
                         <span id="_hs"></span>
                     </div>
-                    <div class="hs-jg" style="display: flex; align-items: center; flex-direction: row; justify-content: center; align-content: center;">
-                        <div style="font-size:130px;margin-right:5px">1</div>
-                        <div style="display: flex; align-items: flex-start; flex-direction: column">
-                            <div style="display:flex">天内</div>
-                            <div style="font-size: 50px;">阴性</div>
+                    <div class="hs-jg">
+                        <div class="hs-jg-day">1</div>
+                        <div class="hs-jg-content">
+                            <div>天内</div>
+                            <div id="hs-jg-content-2">阴性</div>
                         </div>
                     </div>
-                    <div class="hs-mc">核酸检测<img src="./学生通行码_files/edit.png"></div>
+                    <div class="hs-mc">核酸检测<img src="img/edit.png" /></div>
                 </div>
             </div>
             <div class="bottom-right">
@@ -370,7 +82,7 @@
                 <div class="bottom-xcm">
                     <div class="xcm-top">
                         <div class="xcm-top-img">
-                            <img src="./学生通行码_files/isgo.png">
+                            <img src="img/isgo.png" />
                         </div>
                         <div class="xcm-top-content">
                             <div class="xcm-title">疫情重点地区核验</div>
@@ -378,26 +90,30 @@
                         </div>
                     </div>
                     <div id="xcm-hy">
-                        <div class="xcm-ljhq" onclick="alertOpen($("#yqfk-hy").html())">立即获取</div>
+                        <div class="xcm-ljhq" onclick='alertOpen($("#yqfk-hy").html())'>立即获取</div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 疫情防控地区核验 -->
-        <div hidden="hidden" id="yqfk-hy">
+        <div hidden="hidden" id='yqfk-hy'>
             <div class="yqfk-hy">
-                <div class="hy-mc">疫情重点地区核验</div>
-                <div class="hy-sjh"><img src="./学生通行码_files/mobile.png"><input type="text" name="sjh" placeholder="手机号码"></div>
-                <div class="hy-yzm"><img src="./学生通行码_files/mobile-yz.png"><input type="text" name="yzm" placeholder="短信验证码"><span onclick="getCode()" name="btn_yzm">获取验证码</span></div>
-                <div class="hy-qr" onclick="$(event.target).children(0).click();"><input type="checkbox" onclick="isCheck(this)" value="同意并授权运营商查询本人疫情数据">同意并授权运营商查询本人通信行程卡数据</div>
-                <div class="hy-cx disabled1" onclick="getXcm()">查询</div>
+                <div class='hy-mc'>疫情重点地区核验</div>
+                <div class='hy-sjh'><img src="img/mobile.png" /><input type="text" name='sjh' value="13456982338"
+                        placeholder="手机号码" /></div>
+                <div class='hy-yzm'><img src="img/mobile-yz.png" /><input type="text" name='yzm'
+                        placeholder="短信验证码" /><span onclick="getCode()" name="btn_yzm">获取验证码</span></div>
+                <div class='hy-qr' onclick='$(event.target).children(0).click();'><input type="checkbox"
+                        onclick='isCheck(this)' value="同意并授权运营商查询本人疫情数据" />同意并授权运营商查询本人通信行程卡数据</div>
+                <div class='hy-cx disabled1' onclick="getXcm()">查询</div>
             </div>
         </div>
         <!-- 行程码短信验证传值 -->
         <div hidden="hidden">
-            <div id="queryId"></div>
-            <div id="sendTime"></div>
+            <div id='queryId'></div>
+            <div id='sendTime'></div>
         </div>
-    </div><remove-web-limits-iqxin id="rwl-iqxin" class="rwl-exempt" style="position: fixed; top: 0px; left: 0px;"><qxinbutton type="qxinbutton" id="rwl-setbtn"> set </qxinbutton> <lalala style="cursor:move; font-size:12px;">限制解除</lalala> <input type="checkbox" name="" id="black_node"><style type="text/css">#rwl-iqxin{position:fixed;transform:translate(-95px,0);width:85px;height:25px;font-size:12px;font-weight: 500;font-family:Verdana, Arial, '宋体';color:#fff;background:#333;z-index:2147483647;margin: 0;opacity:0.05;transition:0.3s;overflow:hidden;user-select:none;text-align:center;white-space:nowrap;line-height:25px;padding:0 16px;border:1px solid #ccc;border-width:1px 1px 1px 0;border-bottom-right-radius:5px;box-sizing: content-box;}#rwl-iqxin input{margin: 0;padding: 0;vertical-align:middle;-webkit-appearance:checkbox;-moz-appearance:checkbox;position: static;clip: auto;opacity: 1;cursor: pointer;}#rwl-iqxin.rwl-active-iqxin{left: 0px;transform:translate(0,0);opacity: 0.9;height: 32px;line-height: 32px}#rwl-iqxin label{margin:0;padding:0;font-weight:500;}#rwl-iqxin #rwl-setbtn{margin: 0 4px 0 0;padding: 0 0 0 4px;border: none;border-radius: 2px;cursor: pointer;background: #fff;color: #000;} </style></remove-web-limits-iqxin>
+    </div>
+</body>
 
-</body></html>
+</html>

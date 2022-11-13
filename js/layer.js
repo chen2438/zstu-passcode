@@ -1,4 +1,4 @@
-/*! layer mobile-v2.0 弹层组件移动版 The MIT License */
+/*! layer mobile-v2.0 寮瑰眰缁勪欢绉诲姩鐗� The MIT License */
 ; !function (a) {
     "use strict";
     var b = document

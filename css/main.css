@@ -1,4 +1,4 @@
-﻿* {
+* {
     margin: 0;
     font-family: Arial;
 }
@@ -11,9 +11,9 @@
     margin: 20px 0 20px 50px;
 }
 
-    .top-banner > img {
-        width: 300px;
-    }
+.top-banner>img {
+    width: 300px;
+}
 
 .top-title {
     margin: 0px auto 30px auto;
@@ -33,9 +33,14 @@
     align-items: flex-start;
     border-radius: 25px;
     margin: 20px auto 0 auto;
+    background: url('../img/card.png') no-repeat;
+    background-size: 100%;
+    background-position: center;
 }
 
-.top-xm, .top-xgh, .top-dw {
+.top-xm,
+.top-xgh,
+.top-dw {
     font-size: 35px;
     text-indent: 20px;
     color: white;
@@ -55,10 +60,10 @@
     font-weight: 600;
 }
 
-    .top-xm > span {
-        font-weight: 300;
-        font-size: 30px;
-    }
+#top-xm-2 {
+    font-weight: 300;
+    font-size: 30px;
+}
 
 .mid-info {
     width: 94%;
@@ -87,20 +92,20 @@
     text-align: center;
 }
 
-    .mid-ewm > img {
-        width: 500px;
-        height: 500px;
-    }
+.mid-ewm>img {
+    width: 500px;
+    height: 500px;
+}
 
-    .mid-ewm > a {
-        text-decoration: none;
-        cursor: pointer;
-        display: block;
-        margin: auto;
-        font-size: 30px;
-        line-height: 30px;
-        font-weight: bold;
-    }
+.mid-ewm>a {
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+}
 
 .mid-mrdk {
     color: #2f92d9;
@@ -128,7 +133,7 @@
 .ym-span {
     color: blue;
     font-size: 40px;
-    background: url('./ym.png') no-repeat;
+    background: url('../img/ym.png') no-repeat;
     background-size: 52px;
     background-position: right;
     padding-right: 55px;
@@ -142,16 +147,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: rgb(153 239 125 / 20%);
 }
 
-    .mid-msg > span {
-        padding: 28px;
-        font-size: 35px;
-        line-height: 40px;
-        font-weight: bold;
-        text-align: center;
-        color: gray;
-    }
+.mid-msg>span {
+    padding: 28px;
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+    color: gray;
+}
 
 .bottom-info {
     width: 94%;
@@ -206,6 +212,8 @@
     align-items: center;
     text-align: center;
     color: #FFF;
+    background: url('../img/hs-green.png') no-repeat;
+    background-size: 300px;
 }
 
 .hs-mc {
@@ -220,24 +228,40 @@
     align-items: center;
 }
 
-    .hs-mc > img {
-        width: 40px;
-        height: 40px;
-        margin-left: 10px;
-    }
+.hs-mc>img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
 
 .hs-jg {
     width: 100%;
     height: 140px;
-    font-size: 60px;
-    line-height: 60px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
 }
 
-    .hs-jg > div {
-        font-size: 30px;
-        line-height: 50px;
-    }
+.hs-jg-day {
+    line-height: 50px;
+    font-size: 130px;
+    margin-right: 5px;
+}
+
+.hs-jg-content {
+    font-size: 30px;
+    line-height: 50px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#hs-jg-content-2 {
+    font-size: 50px;
+}
 
 .hs-sj {
     width: 100%;
@@ -263,7 +287,7 @@
     flex-direction: row;
 }
 
-.xcm-top-img > img {
+.xcm-top-img>img {
     width: 130px;
     height: 130px;
     margin-top: 10px;
@@ -352,25 +376,34 @@
 
 .disabled {
     pointer-events: none;
-    filter: alpha(opacity=50); /*IE滤镜，透明度50%*/
-    -moz-opacity: 0.5; /*Firefox私有，透明度50%*/
-    opacity: 0.5; /*其他，透明度50%*/
+    filter: alpha(opacity=50);
+    /*IE滤镜，透明度50%*/
+    -moz-opacity: 0.5;
+    /*Firefox私有，透明度50%*/
+    opacity: 0.5;
+    /*其他，透明度50%*/
 }
 
 .disabled1 {
     pointer-events: none;
-    filter: alpha(opacity=50); /*IE滤镜，透明度50%*/
-    -moz-opacity: 0.5; /*Firefox私有，透明度50%*/
-    opacity: 0.5; /*其他，透明度50%*/
+    filter: alpha(opacity=50);
+    /*IE滤镜，透明度50%*/
+    -moz-opacity: 0.5;
+    /*Firefox私有，透明度50%*/
+    opacity: 0.5;
+    /*其他，透明度50%*/
     background-color: gray !important;
     border-color: gray !important;
 }
 
 .disabled2 {
     pointer-events: none;
-    filter: alpha(opacity=50); /*IE滤镜，透明度50%*/
-    -moz-opacity: 0.5; /*Firefox私有，透明度50%*/
-    opacity: 0.5; /*其他，透明度50%*/
+    filter: alpha(opacity=50);
+    /*IE滤镜，透明度50%*/
+    -moz-opacity: 0.5;
+    /*Firefox私有，透明度50%*/
+    opacity: 0.5;
+    /*其他，透明度50%*/
     color: gray !important;
 }
 
@@ -391,48 +424,52 @@
     font-weight: bolder;
 }
 
-.hy-sjh, .hy-yzm {
+.hy-sjh,
+.hy-yzm {
     width: 100%;
     height: 120px;
 }
 
-    .hy-sjh > input, .hy-yzm > input {
-        width: 70%;
-        height: 90px;
-        font-size: 35px;
-        border: 0;
-        border-bottom: 1px solid #c5c5c5;
-        margin-left: 20px;
-        color: gray;
-    }
+.hy-sjh>input,
+.hy-yzm>input {
+    width: 70%;
+    height: 90px;
+    font-size: 35px;
+    border: 0;
+    border-bottom: 1px solid #c5c5c5;
+    margin-left: 20px;
+    color: gray;
+}
 
-    .hy-sjh > img, .hy-yzm > img {
-        width: 50px;
-        height: 50px;
-    }
+.hy-sjh>img,
+.hy-yzm>img {
+    width: 50px;
+    height: 50px;
+}
 
-    .hy-sjh > input:focus, .hy-yzm > input:focus {
-        outline: none;
-    }
+.hy-sjh>input:focus,
+.hy-yzm>input:focus {
+    outline: none;
+}
 
-    .hy-yzm > span {
-        width: 170px;
-        font-size: 30px;
-        color: #2f92d9;
-        position: absolute;
-        right: 15%;
-        margin-top: 30px;
-    }
+.hy-yzm>span {
+    width: 170px;
+    font-size: 30px;
+    color: #2f92d9;
+    position: absolute;
+    right: 15%;
+    margin-top: 30px;
+}
 
 .hy-qr {
     font-size: 35px;
 }
 
-    .hy-qr > input {
-        width: 35px;
-        height: 35px;
-        margin-right: 20px;
-    }
+.hy-qr>input {
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+}
 
 .hy-cx {
     font-size: 40px;
