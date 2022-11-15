@@ -1,7 +1,4 @@
-import dept from "../json/dept.json";
-console.log(dept);
-
-var deptURL = 'https://web-1303840613.cos.ap-shanghai.myqcloud.com/json/dept.json';
+var deptURL = '../json/dept.json';
 var request_dept = new XMLHttpRequest();
 request_dept.open('GET', deptURL);
 request_dept.responseType = 'json';
@@ -12,7 +9,7 @@ request_dept.onload = function () {
 }
 
 function mainRequest(deptOBJ) {
-    var requestURL = 'https://web-1303840613.cos.ap-shanghai.myqcloud.com/json/userData.json';
+    var requestURL = '../json/userData.json';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
