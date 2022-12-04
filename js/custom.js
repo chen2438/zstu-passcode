@@ -30,6 +30,8 @@ function getTime() {
     $("#sj").text(month + "月" + day + "日  " + hour + ":" + minute + ":" + second);
     if (month.toString().length < 2)
         month = "0" + month;
+    if (day.toString().length < 2)
+        day = "0" + day;
     $("#_hs").text(month + "-" + day + "  " + "00" + ":" + "13");
 }
 function GetInfo(tag) {
