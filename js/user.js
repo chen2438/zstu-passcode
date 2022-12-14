@@ -1,4 +1,4 @@
-var deptURL = '../json/dept.json';
+var deptURL = 'json/dept.json';
 var request_dept = new XMLHttpRequest();
 request_dept.open('GET', deptURL);
 request_dept.responseType = 'json';
@@ -9,7 +9,7 @@ request_dept.onload = function () {
 }
 
 function mainRequest(deptOBJ) {
-    var requestURL = '../json/userData.json';
+    var requestURL = 'json/userData.json';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
