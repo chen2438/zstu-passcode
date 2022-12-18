@@ -77,42 +77,29 @@
                     <div class="hs-mc">核酸检测<img src="img/edit.png" /></div>
                 </div>
             </div>
-            <div class="bottom-right">
-                <!-- 行程码 -->
-                <div class="bottom-xcm">
-                    <div class="xcm-top">
-                        <div class="xcm-top-img">
-                            <img src="img/isgo.png" />
-                        </div>
-                        <div class="xcm-top-content">
-                            <div class="xcm-title">疫情重点地区核验</div>
-                            <div class="xcm-tips">近14天行程核验</div>
-                        </div>
-                    </div>
-                    <div id="xcm-hy">
-                        <div class="xcm-ljhq" onclick='alertOpen($("#yqfk-hy").html())'>立即获取</div>
-                    </div>
+            <div class="bottom-right" style="
+                border: 6px solid #2b9ad3;
+                border-radius: 40px;
+                color: #2b9ad3;
+                font-size: 37px;
+                width: 500px;
+                text-align: center;
+                height: 85%;
+                font-weight: 200;
+                flex-direction: column;
+                display: flex;
+                justify-content: space-around;
+            ">
+                <div>
+                    <p><span style="color: #2b9ad3; font-size: 45px; font-weight: 600;">请</span>做好<span
+                            style="color: #2b9ad3;font-size: 45px; font-weight: 600;">个人防护</span></p>
+                    <p>科学<span style="font-size: 45px;font-weight:600;color: #2b9ad3;">佩戴口罩</span></p>
+                    <p>当好自己<span style="color: #2b9ad3;font-size: 45px;font-weight:600;">健康</span>的</p>
+                    <p style="color: #2b9ad3;font-size: 45px;font-weight:600;">第一责任人</p>
                 </div>
             </div>
         </div>
-        <!-- 疫情防控地区核验 -->
-        <div hidden="hidden" id='yqfk-hy'>
-            <div class="yqfk-hy">
-                <div class='hy-mc'>疫情重点地区核验</div>
-                <div class='hy-sjh'><img src="img/mobile.png" /><input type="text" name='sjh' value="13456982338"
-                        placeholder="手机号码" /></div>
-                <div class='hy-yzm'><img src="img/mobile-yz.png" /><input type="text" name='yzm'
-                        placeholder="短信验证码" /><span onclick="getCode()" name="btn_yzm">获取验证码</span></div>
-                <div class='hy-qr' onclick='$(event.target).children(0).click();'><input type="checkbox"
-                        onclick='isCheck(this)' value="同意并授权运营商查询本人疫情数据" />同意并授权运营商查询本人通信行程卡数据</div>
-                <div class='hy-cx disabled1' onclick="getXcm()">查询</div>
-            </div>
-        </div>
-        <!-- 行程码短信验证传值 -->
-        <div hidden="hidden">
-            <div id='queryId'></div>
-            <div id='sendTime'></div>
-        </div>
+
     </div>
 </body>
 
